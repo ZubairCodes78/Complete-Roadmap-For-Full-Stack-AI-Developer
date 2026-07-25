@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Zyvone — Become an AI Full-Stack Engineer in 90 Days</title>
+<meta name="description" content="A premium, practical 90-day roadmap that turns a beginner into a production-ready AI Full-Stack Engineer. Designed & Developed by Zyvone." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Geist:wght@500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: { bg:'#0A0A0A', surface:'#111111', primary:'#2563EB', secondary:'#06B6D4', accent:'#8B5CF6', muted:'#9CA3AF' },
+        fontFamily: { geist:['Geist','Inter','sans-serif'], inter:['Inter','sans-serif'], mono:['Geist Mono','monospace'] },
+      }
+    }
+  }
+</script>
+
+<style>
+  :root{
+    --bg:#0A0A0A; --surface:#111111;
+    --primary:#2563EB; --secondary:#06B6D4; --accent:#8B5CF6;
+    --text:#FFFFFF; --muted:#9CA3AF;
+  }
+  *{ scroll-behavior:smooth; }
+  html, body{ background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; }
+  ::selection{ background:var(--primary); color:#fff; }
+  ::-webkit-scrollbar{ width:8px; }
+  ::-webkit-scrollbar-track{ background:var(--bg); }
+  ::-webkit-scrollbar-thumb{ background:#262626; border-radius:8px; }
+  ::-webkit-scrollbar-thumb:hover{ background:#333; }
+  a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible{
+    outline:2px solid var(--secondary); outline-offset:2px; border-radius:4px;
+  }
+  .font-display{ font-family:'Geist','Inter',sans-serif; letter-spacing:-0.02em; }
+  .font-num{ font-family:'Geist Mono','Inter',monospace; }
+
+  .glass{ background:rgba(17,17,17,0.6); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.08); }
+  .card{ background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.08); transition:border-color .3s ease, transform .3s ease; }
+  .card:hover{ border-color:rgba(37,99,235,0.4); transform:translateY(-3px); }
+  .card-flat{ background:var(--surface); border:1px solid rgba(255,255,255,0.08); }
+
+  .gradient-text{ background:linear-gradient(90deg,#fff 10%,var(--secondary) 55%,var(--accent) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .gradient-btn{ background:linear-gradient(90deg,var(--primary),var(--secondary)); transition:filter .25s ease, transform .25s ease, box-shadow .25s ease; }
+  .gradient-btn:hover{ filter:brightness(1.12); transform:translateY(-2px); box-shadow:0 10px 30px -8px rgba(37,99,235,0.5); }
+  .ghost-btn{ border:1px solid rgba(255,255,255,0.14); transition:border-color .25s ease, background .25s ease; }
+  .ghost-btn:hover{ border-color:rgba(255,255,255,0.35); background:rgba(255,255,255,0.04); }
+
+  .hero-glow{
+    background:
+      radial-gradient(600px circle at 18% 8%, rgba(37,99,235,0.20), transparent 60%),
+      radial-gradient(500px circle at 88% 22%, rgba(139,92,246,0.16), transparent 60%),
+      radial-gradient(700px circle at 50% 100%, rgba(6,182,212,0.10), transparent 60%);
+  }
+  .noise-grid{
+    background-image:linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size:44px 44px;
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 20%, #000 40%, transparent 100%);
+  }
+
+  .reveal{ opacity:0; transform:translateY(22px); transition:opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1); }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  .tag{ background:rgba(37,99,235,0.1); border:1px solid rgba(37,99,235,0.3); color:#dbe6ff; }
+  .spine{ background:linear-gradient(180deg,var(--primary),var(--secondary) 50%,var(--accent)); }
+
+  .progress-fill{ background:linear-gradient(90deg,var(--primary),var(--secondary),var(--accent)); transition:width .5s ease; }
+  .bar-fill{ transition:width .5s ease; }
+
+  details > summary{ list-style:none; cursor:pointer; }
+  details > summary::-webkit-details-marker{ display:none; }
+  details[open] .chev{ transform:rotate(180deg); }
+  .chev{ transition:transform .3s ease; }
+
+  .cl-box{ border:1px solid rgba(255,255,255,0.25); transition:background .2s ease, border-color .2s ease; }
+  .checklist-item.done .cl-box{ background:var(--primary); border-color:var(--primary); }
+  .checklist-item.done .cl-text{ color:var(--muted); text-decoration:line-through; }
+
+  .link-row{ transition:color .2s ease; }
+  .link-row:hover{ color:var(--secondary); }
+
+  .navlink{ position:relative; }
+  .navlink::after{ content:''; position:absolute; left:0; bottom:-4px; width:0; height:1px; background:var(--secondary); transition:width .25s ease; }
+  .navlink:hover::after{ width:100%; }
+
+  /* CSS-only donut chart */
+  .donut{
+    --pct:0;
+    width:112px; height:112px; border-radius:9999px;
+    background:conic-gradient(var(--donut-color, var(--primary)) calc(var(--pct)*1%), rgba(255,255,255,0.07) 0);
+    display:flex; align-items:center; justify-content:center;
+    transition:background 1s ease;
+  }
+  .donut-inner{
+    width:86px; height:86px; border-radius:9999px; background:var(--surface);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    border:1px solid rgba(255,255,255,0.06);
+  }
+
+  @media (prefers-reduced-motion: reduce){ *{ transition:none !important; animation:none !important; scroll-behavior:auto !important; } }
+</style>
+</head>
+
+<body class="bg-bg text-white antialiased">
+
+<!-- ================= NAVBAR ================= -->
+<nav id="navbar" class="fixed top-0 inset-x-0 z-50 glass">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-2 font-display font-bold text-lg tracking-tight">
+      <span class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+        <i data-lucide="sparkles" class="w-4 h-4"></i>
+      </span>
+      Zyvone
+    </a>
+    <div class="hidden md:flex items-center gap-8 text-sm text-muted font-medium">
+      <a href="#dashboard" class="navlink hover:text-white transition-colors">Dashboard</a>
+      <a href="#timeline" class="navlink hover:text-white transition-colors">Roadmap</a>
+      <a href="#resources" class="navlink hover:text-white transition-colors">Resources</a>
+      <a href="#projects" class="navlink hover:text-white transition-colors">Final Projects</a>
+    </div>
+    <a href="#timeline" class="gradient-btn hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-white px-4 py-2 rounded-full">
+      Start Now <i data-lucide="arrow-right" class="w-4 h-4"></i>
+    </a>
+    <button id="menuBtn" class="md:hidden text-white" aria-label="Toggle menu"><i data-lucide="menu" class="w-6 h-6"></i></button>
+  </div>
+  <div id="mobileMenu" class="md:hidden hidden border-t border-white/10 px-6 py-4 space-y-3 text-sm text-muted">
+    <a href="#dashboard" class="block hover:text-white">Dashboard</a>
+    <a href="#timeline" class="block hover:text-white">Roadmap</a>
+    <a href="#resources" class="block hover:text-white">Resources</a>
+    <a href="#projects" class="block hover:text-white">Final Projects</a>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header id="top" class="relative pt-40 pb-24 px-6 overflow-hidden hero-glow">
+  <div class="absolute inset-0 noise-grid pointer-events-none"></div>
+  <div class="relative max-w-5xl mx-auto text-center">
+    <div class="reveal inline-flex items-center gap-2 glass rounded-full px-4 py-1.5 text-xs font-medium text-muted mb-8">
+      <i data-lucide="calendar-clock" class="w-3.5 h-3.5 text-secondary"></i>
+      90 Days · 12 Weeks · Project-First Learning
+    </div>
+    <h1 class="reveal font-display font-extrabold text-5xl sm:text-6xl lg:text-7xl leading-[1.05] tracking-tight">
+      Become an AI Full-Stack<br /><span class="gradient-text">Engineer in 90 Days.</span>
+    </h1>
+    <p class="reveal text-muted text-lg sm:text-xl max-w-2xl mx-auto mt-8 leading-relaxed">
+      A practical, no-fluff roadmap from Python and Git basics to shipping a production AI SaaS —
+      built around real projects, not passive video-watching.
+    </p>
+    <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
+      <a href="#dashboard" class="gradient-btn w-full sm:w-auto text-center font-semibold px-7 py-3.5 rounded-full text-white">View Progress Dashboard</a>
+      <a href="#timeline" class="ghost-btn w-full sm:w-auto text-center font-semibold px-7 py-3.5 rounded-full text-white">Explore the 12 Weeks</a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= PROGRESS DASHBOARD ================= -->
+<section id="dashboard" class="py-20 px-6 border-t border-white/5">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal max-w-2xl mb-12">
+      <span class="text-secondary text-xs font-semibold tracking-[0.2em] uppercase">Progress Dashboard</span>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl mt-4">Your roadmap, measured.</h2>
+      <p class="text-muted mt-3 text-sm leading-relaxed">
+        Progress is tracked in this browser session using in-memory storage. This preview environment does not
+        support persistent localStorage — open this file directly in your own browser (outside a Claude.ai
+        preview) if you want your progress saved between visits.
+      </p>
+    </div>
+
+    <div class="reveal grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <div class="card-flat rounded-2xl p-5">
+        <div class="flex items-center gap-2 text-muted text-xs uppercase tracking-wider mb-2"><i data-lucide="calendar-days" class="w-4 h-4"></i>Days Remaining</div>
+        <div id="daysRemaining" class="font-num font-bold text-3xl">90</div>
+      </div>
+      <div class="card-flat rounded-2xl p-5">
+        <div class="flex items-center gap-2 text-muted text-xs uppercase tracking-wider mb-2"><i data-lucide="flag" class="w-4 h-4"></i>Current Week</div>
+        <div id="currentWeek" class="font-num font-bold text-3xl">1<span class="text-muted text-base font-normal"> / 12</span></div>
+      </div>
+      <div class="card-flat rounded-2xl p-5">
+        <div class="flex items-center gap-2 text-muted text-xs uppercase tracking-wider mb-2"><i data-lucide="book-marked" class="w-4 h-4"></i>Topics Completed</div>
+        <div id="topicsDone" class="font-num font-bold text-3xl">0<span class="text-muted text-base font-normal">/0</span></div>
+      </div>
+      <div class="card-flat rounded-2xl p-5">
+        <div class="flex items-center gap-2 text-muted text-xs uppercase tracking-wider mb-2"><i data-lucide="hammer" class="w-4 h-4"></i>Projects Completed</div>
+        <div id="projectsDone" class="font-num font-bold text-3xl">0<span class="text-muted text-base font-normal">/12</span></div>
+      </div>
+    </div>
+
+    <div class="reveal card-flat rounded-2xl p-6 mb-8">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="font-display font-semibold flex items-center gap-2"><i data-lucide="gauge" class="w-5 h-5 text-secondary"></i>Overall Completion</h3>
+        <span id="overallPct" class="font-num font-bold text-2xl gradient-text">0%</span>
+      </div>
+      <div class="w-full h-3 rounded-full bg-white/5 overflow-hidden">
+        <div id="progressBar" class="progress-fill h-full rounded-full" style="width:0%"></div>
+      </div>
+      <div class="grid grid-cols-3 mt-3 text-xs text-muted uppercase tracking-wider">
+        <span>Month 1 · Foundations</span>
+        <span class="text-center">Month 2 · SaaS Engineering</span>
+        <span class="text-right">Month 3 · AI Engineering</span>
+      </div>
+    </div>
+
+    <div class="reveal grid lg:grid-cols-3 gap-6">
+      <div class="card-flat rounded-2xl p-6 flex items-center gap-6">
+        <div class="donut" id="donutOverall" style="--donut-color:var(--secondary)">
+          <div class="donut-inner">
+            <span id="donutOverallPct" class="font-num font-bold text-lg">0%</span>
+            <span class="text-[10px] text-muted uppercase tracking-wider">Skill Progress</span>
+          </div>
+        </div>
+        <div class="flex-1 space-y-3 text-sm">
+          <div>
+            <div class="flex justify-between text-xs text-muted mb-1"><span>Frontend</span><span id="frontendPctLabel">0%</span></div>
+            <div class="w-full h-1.5 rounded-full bg-white/5 overflow-hidden"><div id="frontendBar" class="bar-fill h-full rounded-full" style="width:0%;background:var(--primary)"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-xs text-muted mb-1"><span>Backend</span><span id="backendPctLabel">0%</span></div>
+            <div class="w-full h-1.5 rounded-full bg-white/5 overflow-hidden"><div id="backendBar" class="bar-fill h-full rounded-full" style="width:0%;background:var(--secondary)"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-xs text-muted mb-1"><span>AI Engineering</span><span id="aiPctLabel">0%</span></div>
+            <div class="w-full h-1.5 rounded-full bg-white/5 overflow-hidden"><div id="aiBar" class="bar-fill h-full rounded-full" style="width:0%;background:var(--accent)"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-flat rounded-2xl p-6 flex flex-col items-center justify-center text-center">
+        <div class="donut" id="donutProjects" style="--donut-color:var(--accent)">
+          <div class="donut-inner">
+            <span id="donutProjectsPct" class="font-num font-bold text-lg">0%</span>
+            <span class="text-[10px] text-muted uppercase tracking-wider">Projects</span>
+          </div>
+        </div>
+        <p class="text-xs text-muted mt-4">Project Progress across all 12 weekly builds</p>
+      </div>
+
+      <div class="card-flat rounded-2xl p-6">
+        <h4 class="font-display font-semibold text-sm mb-4 flex items-center gap-2"><i data-lucide="bar-chart-3" class="w-4 h-4 text-secondary"></i>Weekly Progress</h4>
+        <div id="weeklyBars" class="grid grid-cols-12 gap-1.5 items-end h-28"></div>
+        <div class="flex justify-between text-[10px] text-muted mt-2"><span>W1</span><span>W12</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TIMELINE ================= -->
+<section id="timeline" class="relative py-24 px-6 border-t border-white/5">
+  <div class="max-w-5xl mx-auto">
+    <div class="reveal max-w-2xl mb-16">
+      <span class="text-secondary text-xs font-semibold tracking-[0.2em] uppercase">The Roadmap</span>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl mt-4">12 weeks. Three phases. One engineer.</h2>
+    </div>
+    <div id="timelineRoot" class="relative"></div>
+  </div>
+</section>
+
+<!-- ================= RESOURCES NOTE ================= -->
+<section id="resources" class="py-24 px-6 border-t border-white/5">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal max-w-2xl mb-10">
+      <span class="text-secondary text-xs font-semibold tracking-[0.2em] uppercase">Resource Philosophy</span>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl mt-4">Official docs first. Trusted Hindi creators second.</h2>
+      <p class="text-muted mt-4 leading-relaxed">
+        Every week links straight to official documentation and to the most trusted, actively-updated Hindi
+        creators — Chai aur Code, Piyush Garg, CodeWithHarry, Apna College, CampusX, Krish Naik, and Codebasics.
+        Resource links open a live YouTube search for that channel and topic, so you always land on their
+        newest playlist instead of an outdated one.
+      </p>
+    </div>
+    <div class="reveal card-flat rounded-2xl p-6 flex items-start gap-4">
+      <i data-lucide="star" class="w-5 h-5 text-accent shrink-0 mt-1"></i>
+      <div>
+        <h3 class="font-semibold mb-1">Primary Machine Learning resource</h3>
+        <p class="text-sm text-muted leading-relaxed mb-2">
+          For Week 10 (Machine Learning), this playlist is the primary recommended resource:
+        </p>
+        <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=1L420xXpDTg&list=PLaldQ9PzZd9qT0KsKJ7yCq70iFFP3MFJ5" class="link-row text-sm font-medium inline-flex items-center gap-1.5">
+          <i data-lucide="youtube" class="w-4 h-4 text-red-400"></i> 100 Days of Machine Learning — CampusX
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINAL PROJECTS ================= -->
+<section id="projects" class="py-24 px-6 border-t border-white/5">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal max-w-2xl mb-14">
+      <span class="text-secondary text-xs font-semibold tracking-[0.2em] uppercase">Final Portfolio</span>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl mt-4">What you'll walk away with.</h2>
+    </div>
+    <div id="finalProjectsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="border-t border-white/10 py-16 px-6">
+  <div class="max-w-6xl mx-auto flex flex-col items-center text-center gap-5">
+    <a href="#top" class="flex items-center gap-2 font-display font-bold text-xl">
+      <span class="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center"><i data-lucide="sparkles" class="w-4.5 h-4.5"></i></span>
+      Zyvone
+    </a>
+    <p class="text-muted text-sm">Designed &amp; Developed by Zyvone</p>
+    <p class="gradient-text font-semibold">Build the Future with AI</p>
+    <div class="flex items-center gap-5 text-muted mt-2">
+      <a href="#dashboard" class="hover:text-white transition-colors text-sm">Dashboard</a>
+      <a href="#timeline" class="hover:text-white transition-colors text-sm">Roadmap</a>
+      <a href="#resources" class="hover:text-white transition-colors text-sm">Resources</a>
+      <a href="#projects" class="hover:text-white transition-colors text-sm">Final Projects</a>
+    </div>
+    <p class="text-xs text-muted/70 mt-6">© 2026 Zyvone. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+"use strict";
+
+/* ============================================================
+   DATA
+   ============================================================ */
+
+var WEEKS = [
+  { week:1, month:1, category:"frontend", title:"Python Fundamentals, Git, GitHub & HTML", hours:14,
+    goal:"Get comfortable with a real dev environment, version control, and the structure of the web.",
+    topics:["Python Fundamentals","Git","GitHub","HTML"],
+    hindi:[{n:"CodeWithHarry", q:"CodeWithHarry Python fundamentals Hindi"},{n:"Apna College", q:"Apna College Git GitHub HTML Hindi"}],
+    docs:[{n:"Python Docs", u:"https://docs.python.org/3/"},{n:"Git Docs", u:"https://git-scm.com/doc"},{n:"MDN — HTML", u:"https://developer.mozilla.org/en-US/docs/Web/HTML"}],
+    assignment:"Write 10 small Python scripts, then push a semantic HTML page to a public GitHub repo.",
+    project:"Personal Portfolio (structure & content)" },
+
+  { week:2, month:1, category:"frontend", title:"CSS, Flexbox, Grid & Tailwind CSS", hours:12,
+    goal:"Style any layout confidently and build fully responsive pages fast with Tailwind.",
+    topics:["CSS","Flexbox","Grid","Responsive Design","Tailwind CSS"],
+    hindi:[{n:"Chai aur Code", q:"Chai aur Code CSS Flexbox Grid Hindi"},{n:"CodeWithHarry", q:"CodeWithHarry Tailwind CSS tutorial Hindi"}],
+    docs:[{n:"MDN — CSS", u:"https://developer.mozilla.org/en-US/docs/Web/CSS"},{n:"Tailwind CSS Docs", u:"https://tailwindcss.com/docs"}],
+    assignment:"Rebuild a real landing page pixel-for-pixel using Tailwind, fully responsive down to mobile.",
+    project:"Modern Landing Page" },
+
+  { week:3, month:1, category:"frontend", title:"JavaScript, DOM, ES6, Async/Await & Fetch API", hours:14,
+    goal:"Master core JavaScript and use it to build interactive, data-driven pages.",
+    topics:["JavaScript","DOM","ES6","Async Await","Fetch API"],
+    hindi:[{n:"CodeWithHarry", q:"CodeWithHarry JavaScript tutorial Hindi"},{n:"Chai aur Code", q:"Chai aur Code JavaScript async await fetch Hindi"}],
+    docs:[{n:"MDN — JavaScript", u:"https://developer.mozilla.org/en-US/docs/Web/JavaScript"},{n:"MDN — Fetch API", u:"https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API"}],
+    assignment:"Consume a public API with async/await and handle loading, error, and empty states in the UI.",
+    project:"Weather App" },
+
+  { week:4, month:1, category:"frontend", title:"React, Hooks, State, Routing & Mini Dashboard", hours:16,
+    goal:"Think in components, manage state with hooks, and build multi-page React apps.",
+    topics:["React","Hooks","State","Routing","Mini Dashboard"],
+    hindi:[{n:"Piyush Garg", q:"Piyush Garg React tutorial Hindi"},{n:"CampusX", q:"CampusX React JS Hindi"}],
+    docs:[{n:"React Docs", u:"https://react.dev/"},{n:"React Router Docs", u:"https://reactrouter.com/"}],
+    assignment:"Build a dashboard with 8+ reusable components, shared state, and protected client-side routes.",
+    project:"Mini Analytics Dashboard" },
+
+  { week:5, month:2, category:"backend", title:"Next.js, App Router, Server Components & Authentication", hours:16,
+    goal:"Ship full-stack Next.js apps with server-rendered data and real user authentication.",
+    topics:["Next.js","App Router","Server Components","Authentication"],
+    hindi:[{n:"Piyush Garg", q:"Piyush Garg Next.js App Router authentication Hindi"},{n:"Chai aur Code", q:"Chai aur Code Next.js tutorial Hindi"}],
+    docs:[{n:"Next.js Docs", u:"https://nextjs.org/docs"}],
+    assignment:"Build a multi-route Next.js app with server components and a working login/signup flow.",
+    project:"Authenticated Business Website" },
+
+  { week:6, month:2, category:"backend", title:"Node.js, Express.js, REST APIs & JWT", hours:14,
+    goal:"Design and secure REST APIs from scratch with token-based authentication.",
+    topics:["Node.js","Express.js","REST APIs","JWT"],
+    hindi:[{n:"Chai aur Code", q:"Chai aur Code Node Express REST API JWT Hindi"},{n:"CodeWithHarry", q:"CodeWithHarry Node.js backend Hindi"}],
+    docs:[{n:"Node.js Docs", u:"https://nodejs.org/en/docs"},{n:"Express Docs", u:"https://expressjs.com/"}],
+    assignment:"Build CRUD REST routes with JWT-protected endpoints and role checks.",
+    project:"Authentication API" },
+
+  { week:7, month:2, category:"backend", title:"PostgreSQL, MongoDB & Prisma ORM", hours:14,
+    goal:"Model both relational and document data, and query it cleanly through an ORM.",
+    topics:["PostgreSQL","MongoDB","Prisma ORM"],
+    hindi:[{n:"Piyush Garg", q:"Piyush Garg Prisma PostgreSQL MongoDB Hindi"},{n:"CampusX", q:"CampusX SQL MongoDB Hindi"}],
+    docs:[{n:"PostgreSQL Docs", u:"https://www.postgresql.org/docs/"},{n:"MongoDB Docs", u:"https://www.mongodb.com/docs/"},{n:"Prisma Docs", u:"https://www.prisma.io/docs"}],
+    assignment:"Design a relational schema in Prisma/PostgreSQL and a document schema in MongoDB for the same domain.",
+    project:"CRM Backend" },
+
+  { week:8, month:2, category:"backend", title:"Complete SaaS — Dashboard, Payments, Admin Panel & Deployment", hours:18,
+    goal:"Assemble everything so far into one deployed, real-world SaaS product.",
+    topics:["Complete SaaS","Dashboard","Payments","Admin Panel","Deployment"],
+    hindi:[{n:"Piyush Garg", q:"Piyush Garg SaaS full stack project Hindi"},{n:"Chai aur Code", q:"Chai aur Code payment integration deployment Hindi"}],
+    docs:[{n:"Vercel Docs", u:"https://vercel.com/docs"},{n:"Stripe Docs", u:"https://docs.stripe.com/"}],
+    assignment:"Add a role-protected admin panel, checkout & webhook payment flow, and deploy to production.",
+    project:"Invoice SaaS" },
+
+  { week:9, month:3, category:"ai", title:"Python for AI, NumPy, Pandas, Statistics & Data Analysis", hours:14,
+    goal:"Get fluent manipulating real datasets and extracting statistical insight from them.",
+    topics:["Python for AI","NumPy","Pandas","Statistics","Data Analysis"],
+    hindi:[{n:"Krish Naik", q:"Krish Naik Python NumPy Pandas Hindi"},{n:"Codebasics", q:"Codebasics Pandas statistics tutorial Hindi"}],
+    docs:[{n:"NumPy Docs", u:"https://numpy.org/doc/"},{n:"Pandas Docs", u:"https://pandas.pydata.org/docs/"}],
+    assignment:"Clean a messy real-world dataset, compute summary statistics, and visualize key trends.",
+    project:"Data Analysis Dashboard" },
+
+  { week:10, month:3, category:"ai", title:"Machine Learning, Regression, Classification & Model Evaluation", hours:16,
+    goal:"Train, evaluate, and correctly interpret regression and classification models.",
+    topics:["Machine Learning","Regression","Classification","Scikit-learn","Model Evaluation"],
+    hindi:[{n:"100 Days of Machine Learning — CampusX", u:"https://www.youtube.com/watch?v=1L420xXpDTg&list=PLaldQ9PzZd9qT0KsKJ7yCq70iFFP3MFJ5", primary:true}],
+    docs:[{n:"scikit-learn Docs", u:"https://scikit-learn.org/stable/"}],
+    assignment:"Train a regression and a classification model, then evaluate both with proper metrics and cross-validation.",
+    project:"House Price Prediction App" },
+
+  { week:11, month:3, category:"ai", title:"Deep Learning — PyTorch, CNN, RNN & Transformers", hours:18,
+    goal:"Understand and implement the core deep learning architectures behind modern AI.",
+    topics:["Deep Learning","PyTorch","CNN","RNN","Transformers"],
+    hindi:[{n:"Krish Naik", q:"Krish Naik Deep Learning PyTorch CNN RNN Transformers Hindi"},{n:"CampusX", q:"CampusX Deep Learning Transformers Hindi"}],
+    docs:[{n:"PyTorch Docs", u:"https://pytorch.org/docs/stable/index.html"}],
+    assignment:"Train a CNN image classifier and implement a simple RNN or Transformer block from scratch.",
+    project:"Deep Learning Image Classifier" },
+
+  { week:12, month:3, category:"ai", title:"Generative AI — LLM APIs, LangChain, RAG, Agents, MCP & n8n", hours:20,
+    goal:"Ship a real, agentic AI product using retrieval, tools, and orchestrated workflows.",
+    topics:["Generative AI","OpenAI API","Gemini API","Claude API","LangChain","LangGraph","RAG","Embeddings","Vector Databases","AI Agents","MCP","n8n"],
+    hindi:[{n:"Chai aur Code", q:"Chai aur Code LangChain RAG AI agents Hindi"},{n:"Piyush Garg", q:"Piyush Garg AI agents OpenAI API MCP Hindi"}],
+    docs:[
+      {n:"OpenAI API Docs", u:"https://platform.openai.com/docs"},
+      {n:"Gemini API Docs", u:"https://ai.google.dev/docs"},
+      {n:"Claude API Docs", u:"https://docs.anthropic.com/"},
+      {n:"LangChain Docs", u:"https://python.langchain.com/"},
+      {n:"LangGraph Docs", u:"https://langchain-ai.github.io/langgraph/"},
+      {n:"n8n Docs", u:"https://docs.n8n.io/"}
+    ],
+    assignment:"Build a RAG pipeline with a vector database, wrap it in an AI agent, and automate one workflow with n8n or MCP.",
+    project:"Final AI SaaS Project" },
+];
+
+var FINAL_PROJECTS = [
+  { icon:"user-circle", title:"Portfolio Website", desc:"A polished personal site showcasing your work and skills." },
+  { icon:"layout-dashboard", title:"Modern SaaS", desc:"A deployed subscription product with dashboard and payments." },
+  { icon:"building-2", title:"CRM", desc:"A relational-database-backed customer relationship manager." },
+  { icon:"bot", title:"AI Chatbot", desc:"A conversational assistant built on a real LLM API." },
+  { icon:"search", title:"RAG Application", desc:"Question-answering over your own documents with a vector database." },
+  { icon:"workflow", title:"AI Automation", desc:"An automated multi-step workflow using AI agents and n8n." },
+  { icon:"line-chart", title:"Machine Learning Prediction App", desc:"A trained model served behind a simple product UI." },
+  { icon:"image", title:"Deep Learning Image Classifier", desc:"A CNN-powered classifier with a live inference demo." },
+  { icon:"rocket", title:"Production AI SaaS", desc:"Your capstone: a deployed, agentic AI SaaS product." },
+];
+
+var MONTH_LABEL = { 1:"Month 1 · Foundations", 2:"Month 2 · Full-Stack SaaS Engineering", 3:"Month 3 · AI Engineering" };
+
+/* ============================================================
+   HELPERS
+   ============================================================ */
+
+function escapeHtml(str){
+  return String(str).replace(/[&<>"']/g, function(c){
+    return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];
+  });
+}
+function ytUrl(q){ return "https://www.youtube.com/results?search_query=" + encodeURIComponent(q); }
+
+function checklistItem(week, type, label, isProject){
+  return (
+    '<label class="checklist-item flex items-start gap-3 cursor-pointer select-none" data-week="' + week + '" data-type="' + type + '">' +
+      '<span class="cl-box w-5 h-5 rounded-md flex items-center justify-center shrink-0 mt-0.5">' +
+        '<i data-lucide="check" class="w-3.5 h-3.5 text-white hidden cl-check"></i>' +
+      '</span>' +
+      '<span class="cl-text text-sm' + (isProject ? ' font-medium' : '') + '">' + escapeHtml(label) + '</span>' +
+    '</label>'
+  );
+}
+
+/* ============================================================
+   RENDERERS
+   ============================================================ */
+
+function renderTimeline(){
+  var html = '<div class="absolute left-[27px] sm:left-[31px] top-2 bottom-2 w-[2px] spine rounded-full"></div>';
+  var lastMonth = 0;
+
+  WEEKS.forEach(function(w){
+    if(w.month !== lastMonth){
+      html += '<div class="reveal mb-6 mt-10 first:mt-0 pl-16 sm:pl-20"><span class="tag inline-block text-xs font-semibold px-3 py-1 rounded-full">' + MONTH_LABEL[w.month] + '</span></div>';
+      lastMonth = w.month;
+    }
+
+    var topicsHtml = w.topics.map(function(t){ return '<span class="tag text-xs px-2.5 py-1 rounded-full">' + escapeHtml(t) + '</span>'; }).join('');
+
+    var hindiHtml = w.hindi.map(function(h){
+      var href = h.u ? h.u : ytUrl(h.q);
+      var star = h.primary ? '<span class="text-[10px] text-accent font-semibold ml-1">PRIMARY</span>' : '';
+      return '<li><a target="_blank" rel="noopener" href="' + href + '" class="link-row flex items-center gap-1.5"><i data-lucide="youtube" class="w-4 h-4 text-red-400"></i>' + escapeHtml(h.n) + star + '</a></li>';
+    }).join('');
+
+    var docsHtml = w.docs.map(function(d){
+      return '<li><a target="_blank" rel="noopener" href="' + d.u + '" class="link-row flex items-center gap-1.5"><i data-lucide="book-open" class="w-4 h-4 text-primary"></i>' + escapeHtml(d.n) + '</a></li>';
+    }).join('');
+
+    var checklistHtml = checklistItem(w.week, 'topic', 'Studied all topics: ' + w.topics.join(', '), false) +
+                         checklistItem(w.week, 'assignment', 'Completed assignment', false) +
+                         checklistItem(w.week, 'project', 'Shipped project: ' + w.project, true);
+
+    html +=
+      '<div class="reveal relative pl-16 sm:pl-20 mb-8">' +
+        '<div class="absolute left-0 sm:left-1 top-0 w-14 h-14 rounded-2xl card flex items-center justify-center font-num font-bold text-lg">' +
+          '<span class="gradient-text">' + (w.week < 10 ? '0' + w.week : w.week) + '</span>' +
+        '</div>' +
+        '<details class="card rounded-2xl overflow-hidden">' +
+          '<summary class="p-5 sm:p-6 flex items-center justify-between gap-4">' +
+            '<div>' +
+              '<div class="text-xs text-muted font-num uppercase tracking-wider mb-1">Week ' + w.week + ' · ' + w.hours + ' hrs estimated</div>' +
+              '<h3 class="font-display font-semibold text-lg sm:text-xl">' + escapeHtml(w.title) + '</h3>' +
+            '</div>' +
+            '<i data-lucide="chevron-down" class="chev w-5 h-5 text-muted shrink-0"></i>' +
+          '</summary>' +
+          '<div class="px-5 sm:px-6 pb-6 pt-0 border-t border-white/5 space-y-6">' +
+            '<div><h4 class="text-xs uppercase tracking-wider text-secondary font-semibold mb-2 mt-5">Goal</h4><p class="text-sm text-muted leading-relaxed">' + escapeHtml(w.goal) + '</p></div>' +
+            '<div><h4 class="text-xs uppercase tracking-wider text-secondary font-semibold mb-2">Topics</h4><div class="flex flex-wrap gap-2">' + topicsHtml + '</div></div>' +
+            '<div class="grid sm:grid-cols-2 gap-6">' +
+              '<div><h4 class="text-xs uppercase tracking-wider text-secondary font-semibold mb-2">Best Hindi Resources</h4><ul class="space-y-2 text-sm">' + hindiHtml + '</ul></div>' +
+              '<div><h4 class="text-xs uppercase tracking-wider text-secondary font-semibold mb-2">Official Documentation</h4><ul class="space-y-2 text-sm">' + docsHtml + '</ul></div>' +
+            '</div>' +
+            '<div><h4 class="text-xs uppercase tracking-wider text-secondary font-semibold mb-2">Assignment</h4><p class="text-sm text-muted leading-relaxed flex gap-2"><i data-lucide="pencil-line" class="w-4 h-4 text-accent shrink-0 mt-0.5"></i>' + escapeHtml(w.assignment) + '</p></div>' +
+            '<div class="rounded-xl bg-primary/10 border border-primary/25 p-4"><div class="text-xs uppercase tracking-wider text-muted mb-1">Weekly Project</div><div class="font-semibold flex items-center gap-2"><i data-lucide="hammer" class="w-4 h-4 text-primary"></i>' + escapeHtml(w.project) + '</div></div>' +
+            '<div><h4 class="text-xs uppercase tracking-wider text-secondary font-semibold mb-2">Completion Checklist</h4><div class="space-y-2">' + checklistHtml + '</div></div>' +
+          '</div>' +
+        '</details>' +
+      '</div>';
+  });
+
+  document.getElementById('timelineRoot').innerHTML = html;
+}
+
+function renderFinalProjects(){
+  document.getElementById('finalProjectsGrid').innerHTML = FINAL_PROJECTS.map(function(p){
+    return '<div class="reveal card rounded-2xl p-6">' +
+      '<i data-lucide="' + p.icon + '" class="w-6 h-6 text-secondary mb-4"></i>' +
+      '<h3 class="font-semibold mb-2">' + escapeHtml(p.title) + '</h3>' +
+      '<p class="text-sm text-muted leading-relaxed">' + escapeHtml(p.desc) + '</p>' +
+    '</div>';
+  }).join('');
+}
+
+function renderWeeklyBars(){
+  var html = WEEKS.map(function(w){
+    return '<div class="w-full bg-white/5 rounded-t-sm flex items-end" style="height:100%;">' +
+             '<div class="weekly-bar w-full rounded-t-sm bg-primary/70" data-week="' + w.week + '" style="height:4%"></div>' +
+           '</div>';
+  }).join('');
+  document.getElementById('weeklyBars').innerHTML = html;
+}
+
+/* ============================================================
+   PROGRESS ENGINE (in-memory, session only)
+   ============================================================ */
+
+function updateProgress(){
+  var allItems = document.querySelectorAll('#timelineRoot .checklist-item');
+  var totalItems = allItems.length;
+  var doneItems = document.querySelectorAll('#timelineRoot .checklist-item.done').length;
+  var overallPct = totalItems > 0 ? Math.round((doneItems / totalItems) * 100) : 0;
+
+  document.getElementById('progressBar').style.width = overallPct + '%';
+  document.getElementById('overallPct').textContent = overallPct + '%';
+  document.getElementById('donutOverall').style.setProperty('--pct', overallPct);
+  document.getElementById('donutOverallPct').textContent = overallPct + '%';
+
+  var topicItems = document.querySelectorAll('#timelineRoot .checklist-item[data-type="topic"]');
+  var totalTopics = 0, doneTopics = 0;
+  WEEKS.forEach(function(w){ totalTopics += w.topics.length; });
+  topicItems.forEach(function(item){
+    if(item.classList.contains('done')){
+      var wk = parseInt(item.getAttribute('data-week'), 10);
+      var weekData = WEEKS.find(function(w){ return w.week === wk; });
+      if(weekData) doneTopics += weekData.topics.length;
+    }
+  });
+  document.getElementById('topicsDone').innerHTML = doneTopics + '<span class="text-muted text-base font-normal">/' + totalTopics + '</span>';
+
+  var projectItems = document.querySelectorAll('#timelineRoot .checklist-item[data-type="project"]');
+  var doneProjects = document.querySelectorAll('#timelineRoot .checklist-item[data-type="project"].done').length;
+  document.getElementById('projectsDone').innerHTML = doneProjects + '<span class="text-muted text-base font-normal">/' + projectItems.length + '</span>';
+  var projectsPct = projectItems.length > 0 ? Math.round((doneProjects / projectItems.length) * 100) : 0;
+  document.getElementById('donutProjects').style.setProperty('--pct', projectsPct);
+  document.getElementById('donutProjectsPct').textContent = projectsPct + '%';
+
+  var categories = { frontend:{done:0,total:0}, backend:{done:0,total:0}, ai:{done:0,total:0} };
+  WEEKS.forEach(function(w){
+    var items = document.querySelectorAll('#timelineRoot .checklist-item[data-week="' + w.week + '"]');
+    var done = document.querySelectorAll('#timelineRoot .checklist-item[data-week="' + w.week + '"].done').length;
+    categories[w.category].total += items.length;
+    categories[w.category].done += done;
+  });
+  ['frontend','backend','ai'].forEach(function(cat){
+    var c = categories[cat];
+    var pct = c.total > 0 ? Math.round((c.done / c.total) * 100) : 0;
+    var bar = document.getElementById(cat + 'Bar');
+    var label = document.getElementById(cat + 'PctLabel');
+    if(bar) bar.style.width = pct + '%';
+    if(label) label.textContent = pct + '%';
+  });
+
+  var weeksCompleted = 0;
+  WEEKS.forEach(function(w){
+    var items = document.querySelectorAll('#timelineRoot .checklist-item[data-week="' + w.week + '"]');
+    var done = document.querySelectorAll('#timelineRoot .checklist-item[data-week="' + w.week + '"].done').length;
+    var pct = items.length > 0 ? Math.round((done / items.length) * 100) : 0;
+    var bar = document.querySelector('.weekly-bar[data-week="' + w.week + '"]');
+    if(bar) bar.style.height = Math.max(pct, 4) + '%';
+    if(items.length > 0 && done === items.length) weeksCompleted++;
+  });
+
+  var currentWeek = Math.min(weeksCompleted + 1, WEEKS.length);
+  document.getElementById('currentWeek').innerHTML = currentWeek + '<span class="text-muted text-base font-normal"> / ' + WEEKS.length + '</span>';
+
+  var daysRemaining = Math.max(0, 90 - (weeksCompleted * 7));
+  document.getElementById('daysRemaining').textContent = daysRemaining;
+}
+
+/* ============================================================
+   INTERACTIONS
+   ============================================================ */
+
+function initMenu(){
+  var btn = document.getElementById('menuBtn');
+  var menu = document.getElementById('mobileMenu');
+  btn.addEventListener('click', function(){ menu.classList.toggle('hidden'); });
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ menu.classList.add('hidden'); }); });
+}
+
+function initChecklistToggles(){
+  document.body.addEventListener('click', function(e){
+    var item = e.target.closest('.checklist-item');
+    if(!item) return;
+    item.classList.toggle('done');
+    var check = item.querySelector('.cl-check');
+    if(check) check.classList.toggle('hidden');
+    updateProgress();
+  });
+}
+
+function initReveal(){
+  var els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){
+    els.forEach(function(el){ el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(function(el){ io.observe(el); });
+}
+
+function initNavbarShadow(){
+  var nav = document.getElementById('navbar');
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > 8){ nav.classList.add('shadow-lg','shadow-black/40'); }
+    else { nav.classList.remove('shadow-lg','shadow-black/40'); }
+  });
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+
+document.addEventListener('DOMContentLoaded', function(){
+  renderTimeline();
+  renderFinalProjects();
+  renderWeeklyBars();
+
+  initMenu();
+  initChecklistToggles();
+  initNavbarShadow();
+
+  if(window.lucide && typeof window.lucide.createIcons === 'function'){
+    window.lucide.createIcons();
+  }
+
+  initReveal();
+  updateProgress();
+});
+</script>
+
+</body>
+</html>
